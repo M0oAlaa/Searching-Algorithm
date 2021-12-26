@@ -12,10 +12,10 @@ uint8_t binarySearch(uint8_t* u8_arr,uint8_t u8_size,uint8_t u8_number);//Declar
 
 void main(void)
 {
-	uint8_t u8_arr[]={2,5,6,3,8,10,1};// the main array that holds elements 
+	uint8_t u8_arr[]={2,5,6,3,8,10,1};// the main array that holds elements "{1,2,3,5,6,8,10}"
 	uint8_t u8_i,u8_j;//for loop iterations
 	uint8_t u8_temp,u8_size,u8_index;
-	uint8_t u8_number=2;// selecting element we want to search about
+	uint8_t u8_number=10;// selecting element we want to search about
 	
 	u8_size=sizeof(u8_arr);// calculating size of the array
 	
