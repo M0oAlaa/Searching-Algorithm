@@ -8,29 +8,35 @@
 #include<stdio.h>
 #include<stdint.h>
 
-uint8_t binarySearch(uint8_t* u8_arr,uint8_t u8_size,uint8_t u8_number);
+uint8_t binarySearch(uint8_t* u8_arr,uint8_t u8_size,uint8_t u8_number);//Declaration of binary searching algorithm
 
 void main(void)
 {
-	uint8_t u8_arr[]={2,5,6,3,8,10,1};
-	uint8_t u8_i,u8_j,u8_temp,u8_size,u8_index,u8_number=2;
+	uint8_t u8_arr[]={2,5,6,3,8,10,1};// the main array that holds elements 
+	uint8_t u8_i,u8_j;//for loop iterations
+	uint8_t u8_temp,u8_size,u8_index;
+	uint8_t u8_number=2;// selecting element we want to search about
 	
-	u8_size=sizeof(u8_arr);
+	u8_size=sizeof(u8_arr);// calculating size of the array
 	
+	/*Compare each element by its side if > or <*/
 	for(u8_i=0;u8_i<(u8_size-1);u8_i++)
 	{
 		for(u8_j=0;u8_j<((u8_size-1)-u8_i);u8_j++)
 		{
 			if(u8_arr[u8_j]>u8_arr[u8_j+1])
 			{
+				/*if > : swap*/
 				u8_temp=u8_arr[u8_j];
 				u8_arr[u8_j]=u8_arr[u8_j+1];
 				u8_arr[u8_j+1]=u8_temp;
 			}
+			else{}
 		}
 	}
-	u8_index=binarySearch(u8_arr,u8_size,u8_number);
-	if(u8_index==255)
+	u8_index=binarySearch(u8_arr,u8_size,u8_number);//call searching function and keep its return in char index
+	/*check if the return index == -1 or >*/
+	if(u8_index==255)//if ==-1 that means the number is not between the elements
 	{
 		printf("This number is not one of these elements");
 	}
@@ -40,13 +46,16 @@ void main(void)
 	}
 }
 
+/*Implementation of Searching function*/
 uint8_t binarySearch(uint8_t* u8_arr,uint8_t u8_size,uint8_t u8_number)
 {
 	uint8_t u8_start=0,u8_index;
 	uint8_t u8_end=u8_size-1;
 	uint8_t u8_center;
+	/*check if the elemnt between array elements or not*/
 	if(u8_number<=255)
 	{
+		/*make sure that start <= end*/
 		while(u8_start<=u8_end)
 		{
 			u8_center=(u8_start+u8_end)/2;
