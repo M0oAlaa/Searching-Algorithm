@@ -8,16 +8,16 @@
 #include<stdio.h>
 #include<stdint.h>
 
-uint8_t binarySearch(uint8_t* u8_arr,uint8_t u8_size,uint8_t u8_number);//Declaration of binary searching algorithm
+uint8_t binarySearch(uint32_t* u8_arr,uint8_t u8_size,uint8_t u8_number);//Declaration of binary searching algorithm
 
 void main(void)
 {
-	uint8_t u8_arr[]={2,5,6,3,8,10,1};// the main array that holds elements "{1,2,3,5,6,8,10}"
+	uint32_t u8_arr[]={2,5,6,3,8,10,1};// the main array that holds elements "{1,2,3,5,6,8,10}"
 	uint8_t u8_i,u8_j;//for loop iterations
 	uint8_t u8_temp,u8_size,u8_index;
 	uint8_t u8_number=10;// selecting element we want to search about
 	
-	u8_size=sizeof(u8_arr);// calculating size of the array
+	u8_size=sizeof(u8_arr)/sizeof(uint32_t);// calculating size of the array
 	
 	/*Compare each element by its side if > or <*/
 	for(u8_i=0;u8_i<(u8_size-1);u8_i++)
@@ -47,7 +47,7 @@ void main(void)
 }
 
 /*Implementation of Searching function*/
-uint8_t binarySearch(uint8_t* u8_arr,uint8_t u8_size,uint8_t u8_number)
+uint8_t binarySearch(uint32_t* u8_arr,uint8_t u8_size,uint8_t u8_number)
 {
 	uint8_t u8_start=0,u8_index;
 	uint8_t u8_end=u8_size-1;
@@ -62,12 +62,10 @@ uint8_t binarySearch(uint8_t* u8_arr,uint8_t u8_size,uint8_t u8_number)
 			if(u8_number>u8_arr[u8_center])
 			{
 				u8_start=u8_center+1;
-				u8_center=(u8_start+u8_end)/2;
 			}
 			else if(u8_number<u8_arr[u8_center])
 			{
 				u8_end=u8_center-1;
-				u8_center=(u8_start+u8_end)/2;
 			}
 			else if(u8_number==u8_arr[u8_center])
 			{
