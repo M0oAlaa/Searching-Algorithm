@@ -13,27 +13,47 @@ uint8_t binarySearch(uint32_t* u8_arr,uint8_t u8_size,uint8_t u8_number);//Decla
 void main(void)
 {
 	uint32_t u8_arr[]={2,5,6,3,8,10,1};// the main array that holds elements "{1,2,3,5,6,8,10}"
-	uint8_t u8_i,u8_j;//for loop iterations
+	uint8_t u8_i,u8_j,u8_flag;//for loop iterations
 	uint8_t u8_temp,u8_size,u8_index;
 	uint8_t u8_number=10;// selecting element we want to search about
 	
 	u8_size=sizeof(u8_arr)/sizeof(uint32_t);// calculating size of the array
-	
-	/*Compare each element by its side if > or <*/
+	/*Check the array elements is sorted or not*/
 	for(u8_i=0;u8_i<(u8_size-1);u8_i++)
 	{
-		for(u8_j=0;u8_j<((u8_size-1)-u8_i);u8_j++)
+		/*If sorted -> flag=1*/
+		if(u8_arr[u8_i]<u8_arr[u8_i+1])
 		{
-			if(u8_arr[u8_j]>u8_arr[u8_j+1])
+			u8_flag=1;
+		}
+		/*If not sorted -> flag=0 and break the loop*/
+		else
+		{
+			u8_flag=0;break;
+		}
+		
+	}
+	/*if not sorted we need to sort first*/
+	if(u8_flag==0)
+	{
+		/*Compare each element by its side if > or <*/
+		for(u8_i=0;u8_i<(u8_size-1);u8_i++)
+		{
+			for(u8_j=0;u8_j<((u8_size-1)-u8_i);u8_j++)
 			{
-				/*if > : swap*/
-				u8_temp=u8_arr[u8_j];
-				u8_arr[u8_j]=u8_arr[u8_j+1];
-				u8_arr[u8_j+1]=u8_temp;
+				if(u8_arr[u8_j]>u8_arr[u8_j+1])
+				{
+					/*if > : swap*/
+					u8_temp=u8_arr[u8_j];
+					u8_arr[u8_j]=u8_arr[u8_j+1];
+					u8_arr[u8_j+1]=u8_temp;
+				}
+				else{}
 			}
-			else{}
 		}
 	}
+	/*if sorted, continue to searching*/
+	else{}
 	u8_index=binarySearch(u8_arr,u8_size,u8_number);//call searching function and keep its return in char index
 	/*check if the return index == -1 or >*/
 	if(u8_index==255)//if ==-1 that means the number is not between the elements
